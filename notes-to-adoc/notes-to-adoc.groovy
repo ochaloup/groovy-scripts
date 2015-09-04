@@ -3,7 +3,7 @@
 // setting logging
 import java.util.logging.*
 Logger log =  Logger.getLogger("")
-log.level = Level.FINE
+log.level = Level.INFO
 System.setProperty('java.util.logging.SimpleFormatter.format', '>>> %4$s: %5$s%n')
 log.handlers.each {
     if(it instanceof ConsoleHandler){
@@ -37,11 +37,11 @@ new File(args[0]).withReader { r ->
     if(titleMatcher.size() == 1) {
       log.fine "Title here"
       def title = titleMatcher[0][1]
-      outF.append(String.format("%s%n", title)) 
+      outF.append(String.format("%n%s%n", title)) 
       outF.append(("-" * title.size()) + String.format("%n")) 
     } else {
       if(isNewSection && line =~ /^[a-z]*:/) {
-        println ">>> New section detected - writing file"
+        log.fine "New section detected - writing file"
         outF.append(text)
         text = ""
       }
@@ -52,9 +52,9 @@ new File(args[0]).withReader { r ->
         isNewSection = true
       }
 
-      line.replaceAll(/^tag:(.*)/) { all, data -> "icon:tags[]" }
-      line.replaceAll(/^source:(.*)/) { all, data -> "icon:bookmark[]" }
-      line.replaceAll(/^links:(.*)/) { all, data -> "icon:plus[]" }
+      line = line.replaceAll(/^tag:(.*)/) { all, data -> "icon:tags[]$data +" }
+      line = line.replaceAll(/^source:(.*)/) { all, data -> "icon:bookmark[]$data +" }
+      line = line.replaceAll(/^links:(.*)/) { all, data -> "icon:plus[]$data +" }
 
       text += line + String.format("%n")
     }
