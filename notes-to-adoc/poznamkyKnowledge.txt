@@ -1,0 +1,12 @@
+tag: interview, xml
+source: http://javarevisited.blogspot.cz/2014/09/10-questions-to-make-programming-interviews-cheaper.html
+title: difference between dtd and xml schema
+DTD, or Document Type Definition, and XML Schema, which is also known as XSD, are two ways of describing the structure and content of an XML document. DTD is the older of the two, and as such, it has limitations that XML Schema has tried to improve. 
+links: http://www.differencebetween.net/technology/difference-between-xml-schema-and-dtd/ 
+
+
+tag: jdbc, java
+source: http://javarevisited.blogspot.com/2012/08/top-10-jdbc-best-practices-for-java.html
+title: using batch in jdbc and java ee
+Prepared statement from db connection is possible to run in batch
+dbConnection.setAutoCommit(false);//commit trasaction manually
